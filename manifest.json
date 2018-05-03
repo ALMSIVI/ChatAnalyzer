@@ -1,0 +1,6 @@
+ {
+    "name": "Chat Analyzer",
+    "version": "1.0",
+    "description": "Analyze Facebook Messages.",
+    "manifest_version": 2
+  }
