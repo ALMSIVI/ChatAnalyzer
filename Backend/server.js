@@ -1,7 +1,7 @@
 /* Express */
 const express = require('express');
 const app = express();
-app.use(express.static('./'));
+app.use(express.static('static'));
 app.listen(3000, () => {
   console.log('Server started at http://localhost:3000/');
 });
@@ -22,12 +22,16 @@ app.get('/', (req, res) => {
   res.redirect('test.html');
 });
 
-app.get('/:text', (req, res) => {
-  console.log('Text to be analyzed:', req.params.text);
+/* POST requests */
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.post('/analyze', (req, res) => {
+  console.log('Text to be analyzed:', req.body);
   toneAnalyzer.tone(
     // Params  
     {
-      tone_input: {text: req.params.text},
+      tone_input: {text: req.body.text},
       content_type: 'application/json'
     },
     // Callback function
@@ -36,7 +40,7 @@ app.get('/:text', (req, res) => {
         console.error('error:', error);
         res.send({});
       } else {
-        let tones = response.document_tone.tones;
+        const tones = response.document_tone.tones;
         // Sort in reverse order
         tones.sort((toneA, toneB) => toneB.score - toneA.score);
         console.log('Tone is:', tones[0]);
