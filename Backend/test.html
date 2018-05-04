@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chat Analyzer Test site</title>
+  <script src="./jquery-3.3.1.min.js"></script>
+  <script type="text/javascript">
+    $(() => {
+      $("#analyze").click(() => {
+        const text = $("#text").val();
+        console.log('Captured text', text);
+        if (text !== "") {
+          $.ajax({
+            url: '/' + text,
+            type: 'GET',
+            dataType: 'json',
+            success: (data) => {
+              $("#result").html("Tone is: " + data.tone_name);
+            }
+          });
+        };
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <h1>Chat Analyzer Test site</h1>
+
+  <p> Please enter the text:</p>
+  <textarea id="text" rows="20" cols="50"></textarea>
+  <br>
+  <button id="analyze">Analyze</button>
+  <br>
+  <div id="result"></div>
+</body>
+</html>

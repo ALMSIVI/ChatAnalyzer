@@ -1,0 +1,18 @@
+{
+  "name": "ChatAnalyzer",
+  "version": "1.0.0",
+  "description": "Backend for ChatAnalyzer",
+  "author": "Yue Wu",
+  "repository": "https://github.com/ALMSIVI/ChatAnalyzer",
+  "license": "MIT",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^3.21.2",
+    "npm": "^6.0.0",
+    "watson-developer-cloud": "^3.4.1"
+  }
+}
